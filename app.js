@@ -5,7 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
+var api = require('./routes/api');
 var http = require('http');
 var path = require('path');
 var Canvas = require('canvas');
@@ -19,6 +19,7 @@ app.set('view engine', 'jade');
 app.use(express.favicon('public/favicon.ico'));
 app.use(express.logger('dev'));
 app.use(express.json());
+app.use(express.compress());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -29,7 +30,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/create/:meme/:topText?/:bottomText?', user.list);
+app.get('/create/:meme/:topText?/:bottomText?', api.create);
 app.get('/', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
