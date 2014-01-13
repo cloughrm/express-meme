@@ -2,7 +2,9 @@ var Canvas = require('canvas');
 var fs = require('fs');
 var helpers = require('../lib/helpers.js');
 
-var imagesDir = __dirname + '/../public/images/memes/', supportedMemes = [];
+var imagesDir = __dirname + '/../public/images/memes/'
+var supportedMemes = [];
+
 fs.readdirSync(imagesDir).forEach(function(memeName) {
     supportedMemes.push(memeName.split('.')[0]);
 });
@@ -52,4 +54,3 @@ exports.create = function(req, res){
     });
 
 };
-
