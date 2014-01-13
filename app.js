@@ -26,6 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/v1/create/:meme/:topText?/:bottomText?', api.create);
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), 'localhost', function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
