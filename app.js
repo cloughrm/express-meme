@@ -24,7 +24,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/v1/create/:meme/:topText?/:bottomText?', api.create);
+app.get('/:meme/:topText?/:bottomText?', api.create);
 
 http.createServer(app).listen(app.get('port'), 'localhost', function(){
   console.log('Express server listening on port ' + app.get('port'));
