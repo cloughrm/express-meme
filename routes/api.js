@@ -2,14 +2,14 @@ var Canvas = require('canvas');
 var fs = require('fs');
 var helpers = require('../lib/helpers.js');
 
-var imagesDir = __dirname + '/../public/images/memes/'
+var imagesDir = __dirname + '/../public/images/'
 var supportedMemes = [];
 
 fs.readdirSync(imagesDir).forEach(function(memeName) {
     supportedMemes.push(memeName.split('.')[0]);
 });
 
-exports.create = function(req, res){
+exports.create = function(req, res) {
 
     var canvas = new Canvas(200,200);
     var context = canvas.getContext('2d');
@@ -42,7 +42,7 @@ exports.create = function(req, res){
         context.textAlign = 'center';
 
         if (req.params.topText) {
-            helpers.wrapText(context, req.params.topText, 'top', canvas.height, canvas.width);            
+            helpers.wrapText(context, req.params.topText, 'top', canvas.height, canvas.width);
         }
         if (req.params.bottomText) {
             helpers.wrapText(context, req.params.bottomText, 'bottom', canvas.height, canvas.width);
