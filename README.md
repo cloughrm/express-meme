@@ -22,6 +22,8 @@ Supported Memes
 ===============
 Supported memes. Usage: http://cloughrm.com/meme/[MEME_NAME_HERE]/[top_text]/[bottom_text_here]
 
+Example: http://cloughrm.com/meme/philosoraptor/i%20can%20haz/memes%3F
+
 * yo_dawg
 * success_kid
 * socially_awkward_penguin
