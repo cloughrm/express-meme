@@ -5,7 +5,7 @@ A meme creation API using node.js express
 Installation (Ubuntu 12.04 LTS)
 ===============================
 * Clone the project
-* Install nodejs and npm
+* Install nodejs and npm (I recommend installing from http://nodejs.org)
 * Install node-canvas dependencies
 ```
 $ sudo apt-get update 
