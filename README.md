@@ -2,7 +2,7 @@ express-meme
 ============
 A meme creation API using node.js express
 
-Installation (Ubuntu 12.04 LTS)
+Installation (Ubuntu 12.04 & 14.04 LTS)
 ===============================
 * Clone the project
 * Install nodejs and npm (I recommend installing from http://nodejs.org)
