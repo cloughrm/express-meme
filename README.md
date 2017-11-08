@@ -50,3 +50,4 @@ Example: http://cloughrm.com/meme/philosoraptor/i%20can%20haz/memes%3F
 * bad-joke-eel
 * bad_luck_brian
 * annoyed_picard
+* script_kitty
