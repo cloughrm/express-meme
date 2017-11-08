@@ -13,6 +13,7 @@ var app = express();
 // Environment vars
 app.set('port', 3000);
 app.set('host', 'localhost');
+// app.set('host', '0.0.0.0');
 app.use(express.favicon('public/favicon.ico'));
 app.use(express.logger());
 app.use(express.json());
