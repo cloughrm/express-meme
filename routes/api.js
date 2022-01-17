@@ -1,35 +1,33 @@
-var Canvas = require('canvas');
-var fs = require('fs');
-var helpers = require('../lib/helpers.js');
+const { createCanvas, Image } = require('canvas');
+const fs = require('fs');
+const helpers = require('../lib/helpers.js');
 
-var imagesDir = __dirname + '/../public/images/'
-var supportedMemes = [];
+const imagesDir = __dirname + '/../public/images/'
+const supportedMemes = [];
 
 fs.readdirSync(imagesDir).forEach(function(memeName) {
     supportedMemes.push(memeName.split('.')[0]);
 });
 
 exports.create = function(req, res) {
+    const canvas = createCanvas(200, 200);
+    const context = canvas.getContext('2d');
+    let fname;
 
-    var canvas = new Canvas(200,200);
-    var context = canvas.getContext('2d');
-    var fname;
-
-    var memeNum = supportedMemes.indexOf(req.params.meme.toLowerCase());
+    let memeNum = supportedMemes.indexOf(req.params.meme.toLowerCase());
     if (memeNum > -1) {
         fname = imagesDir + supportedMemes[memeNum] + '.jpg';
     } else {
-        res.send(404, {
+        return res.send(404, {
             'status': 'error',
             'message': 'meme not found'
         });
-        return
     }
 
     fs.readFile(fname, function(error, meme) {
         if (error) throw error;
 
-        img = new Canvas.Image;
+        let img = new Image();
         img.src = meme;
 
         canvas.width = img.width;

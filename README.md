@@ -2,6 +2,13 @@ express-meme
 ============
 A meme creation API using node.js express
 
+Installation macOS (12.1)
+=========================
+* Install homebrew: https://brew.sh/
+* Install node-canvas
+* `npm i`
+
+
 Installation (Ubuntu 12.04 & 14.04 LTS)
 ===============================
 * Clone the project

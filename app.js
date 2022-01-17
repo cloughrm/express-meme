@@ -1,14 +1,13 @@
 // Run in producation with forever: npm install forever
 
 // Dependencies
-var express = require('express');
-var api = require('./routes/api');
-var http = require('http');
-var path = require('path');
-var Canvas = require('canvas');
+const express = require('express');
+const api = require('./routes/api');
+const http = require('http');
+const path = require('path');
 
 // Create app
-var app = express();
+const app = express();
 
 // Environment vars
 app.set('port', 3000);
