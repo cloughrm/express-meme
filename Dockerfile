@@ -17,4 +17,4 @@ WORKDIR "/opt/express-meme/"
 
 RUN npm i
 
-ENTRYPOINT node app.js
+CMD ["node", "app.js"]
