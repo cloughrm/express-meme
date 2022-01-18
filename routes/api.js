@@ -18,7 +18,7 @@ exports.create = function(req, res) {
     if (memeNum > -1) {
         fname = imagesDir + supportedMemes[memeNum] + '.jpg';
     } else {
-        return res.send(404, {
+        return res.status(404).json({
             'status': 'error',
             'message': 'meme not found'
         });
@@ -47,7 +47,7 @@ exports.create = function(req, res) {
         }
 
         res.setHeader('Content-Type', 'text/html');
-        res.writeHead(201);
+        res.writeHead(200);
         res.end('<img src="' + canvas.toDataURL() + '" />');
     });
 

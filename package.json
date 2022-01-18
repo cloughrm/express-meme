@@ -7,6 +7,9 @@
   },
   "dependencies": {
     "canvas": "^2.8.0",
-    "express": "3.4.7"
+    "compression": "^1.7.4",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0",
+    "serve-favicon": "^2.5.0"
   }
 }

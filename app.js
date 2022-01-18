@@ -1,31 +1,27 @@
-// Run in producation with forever: npm install forever
-
 // Dependencies
 const express = require('express');
 const api = require('./routes/api');
-const http = require('http');
 const path = require('path');
+const favicon = require('serve-favicon');
+const compression = require('compression');
+const logger = require('morgan');
 
 // Create app
 const app = express();
 
 // Environment vars
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 app.set('host', 'localhost');
-// app.set('host', '0.0.0.0');
-app.use(express.favicon('public/favicon.ico'));
-app.use(express.logger());
-app.use(express.json());
-app.use(express.compress());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+
+// Middleware
+app.use(favicon(path.join('public', 'favicon.ico')));
+app.use(logger('combined'));
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // URL
 app.get('/:meme/:topText?/:bottomText?', api.create);
 
 // Run HTTP server
-http.createServer(app).listen(app.get('port'), app.get('host'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+app.listen(app.get('port'));
+console.log(`express-meme listening at http://localhost:${app.get('port')}`);
