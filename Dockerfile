@@ -9,12 +9,14 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 RUN apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev nodejs git bash
 
-WORKDIR "/opt/"
+RUN mkdir -p /opt/express-meme
 
-RUN git clone https://github.com/cloughrm/express-meme.git
+WORKDIR /opt/express-meme
 
-WORKDIR "/opt/express-meme/"
+COPY package*.json ./
 
-RUN npm i
+RUN npm install
+
+COPY . .
 
 CMD ["node", "app.js"]
