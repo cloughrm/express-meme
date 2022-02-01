@@ -1,36 +1,34 @@
 express-meme
 ============
-A meme creation API using node.js express
-
-Installation macOS (12.1)
-=========================
-* Install homebrew: https://brew.sh/
-* Install node-canvas
-* `npm i`
+A meme creation API using node.js express & docker.
 
 
-Installation (Ubuntu 12.04 & 14.04 LTS)
+Dev Installation macOS Monterey (12.1)
+======================================
+1. Install [homebrew](https://brew.sh/)
+2. Install [node-canvas](https://www.npmjs.com/package/canvas) `brew install pkg-config cairo pango libpng jpeg giflib librsvg`
+3. Install node packages: `npm i`
+4. Run in development: `npm run dev`
+
+
+Dev Installation Ubuntu (20.04)
 ===============================
-* Clone the project
-* Install nodejs and npm (I recommend installing from http://nodejs.org)
-* Install node-canvas dependencies
-```
-$ sudo apt-get update 
-$ sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
-$ sudo apt-get install msttcorefonts
-```
-* In the root directory of the project, run "npm install"
+1. Install tzdata: `DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata`
+2. Install nodejs repo: `curl -sL https://deb.nodesource.com/setup_14.x | bash -`
+3. Install the dependancies: `apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev nodejs bash`
+4. Install dependancies: `npm i`
+5. Run in development: `npm run dev`
 
-Run
-===
-To run the application, run "node app.js"
 
-Supported Memes
-===============
-Supported memes. Usage: http://cloughrm.com/meme/[MEME_NAME_HERE]/[top_text]/[bottom_text_here]
+Supported Memes & Usage
+=======================
+Usage: https://localhost:3000/[MEME_NAME]/[TOP_TEXT]/[BOTTOM_TEXT]
 
-Example: http://cloughrm.com/meme/philosoraptor/i%20can%20haz/memes%3F
+Examples:
+* [https://meme.pkt.li/philosoraptor/i can haz/memes?](https://meme.pkt.li/philosoraptor/i%20can%20haz/memes%3F)
+* [https://meme.pkt.li/scumbag_steve/don't worry bro, i'll pay you/next week](https://meme.pkt.li/scumbag_steve/don't%20worry%20bro,%20i'll%20pay%20you/next%20week)
 
+**Supported Memes:**
 * yo_dawg
 * success_kid
 * socially_awkward_penguin
