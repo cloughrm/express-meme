@@ -2,6 +2,10 @@ express-meme
 ============
 A meme creation API using node.js express & docker.
 
+Run via docker:
+1. `docker pull cloughrm/express-meme`
+2. `docker run -p 3000:3000 cloughrm/express-meme`
+
 
 Dev Installation macOS Monterey (12.1)
 ======================================
