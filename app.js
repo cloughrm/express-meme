@@ -1,10 +1,9 @@
-// Dependencies
-const express = require('express');
-const api = require('./routes/api');
-const path = require('path');
-const favicon = require('serve-favicon');
-const compression = require('compression');
-const logger = require('morgan');
+import path from 'path';
+import logger from 'morgan';
+import express from 'express';
+import api from './routes/api.js';
+import favicon from 'serve-favicon';
+import compression from 'compression';
 
 // Create app
 const app = express();
@@ -17,7 +16,7 @@ app.set('host', 'localhost');
 app.use(favicon(path.join('public', 'favicon.ico')));
 app.use(logger('combined'));
 app.use(compression());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // URL
 app.get('/:meme/:topText?/:bottomText?', api.create);

@@ -1,54 +1,62 @@
-const { createCanvas, Image } = require('canvas');
-const fs = require('fs');
-const helpers = require('../lib/helpers.js');
+import path from 'path';
+import cvs from 'canvas';
 
-const imagesDir = __dirname + '/../public/images/'
+import { readdirSync, readFile } from 'fs';
+import { wrapText } from '../lib/helpers.js';
+
+// Get the list of supported meme images
+const imagesDir = path.join(process.cwd(), 'public', 'images');
 const supportedMemes = [];
-
-fs.readdirSync(imagesDir).forEach(function(memeName) {
+readdirSync(imagesDir).forEach(function(memeName) {
     supportedMemes.push(memeName.split('.')[0]);
 });
 
-exports.create = function(req, res) {
-    const canvas = createCanvas(200, 200);
-    const context = canvas.getContext('2d');
-    let fname;
-
-    let memeNum = supportedMemes.indexOf(req.params.meme.toLowerCase());
-    if (memeNum > -1) {
-        fname = imagesDir + supportedMemes[memeNum] + '.jpg';
-    } else {
+// Create a new meme
+function create(req, res) {
+    // Make this the requested meme is supported
+    let requestedMeme = req.params.meme.toLowerCase();
+    if (!supportedMemes.includes(requestedMeme)) {
         return res.status(404).json({
             'status': 'error',
             'message': 'meme not found'
         });
     }
 
-    fs.readFile(fname, function(error, meme) {
+    // Get the requested meme image
+    let fname = path.join(imagesDir, `${requestedMeme}.jpg`);
+    readFile(fname, function(error, meme) {
         if (error) throw error;
 
-        let img = new Image();
+        // Create an image based on the meme image
+        let img = new cvs.Image();
         img.src = meme;
 
+        // Create the canvas
+        const canvas = cvs.createCanvas(200, 200);
+        const context = canvas.getContext('2d');
         canvas.width = img.width;
         canvas.height = img.height;
 
+        // Context settings
         context.drawImage(img, 0, 0, img.width, img.height);
-
         context.fillStyle = 'white';
         context.strokeStyle = 'black';
         context.textAlign = 'center';
 
+        // Write the meme text
         if (req.params.topText) {
-            helpers.wrapText(context, req.params.topText, 'top', canvas.height, canvas.width);
+            wrapText(context, req.params.topText, 'top', canvas.height, canvas.width);
         }
         if (req.params.bottomText) {
-            helpers.wrapText(context, req.params.bottomText, 'bottom', canvas.height, canvas.width);
+            wrapText(context, req.params.bottomText, 'bottom', canvas.height, canvas.width);
         }
 
+        // Send the meme to the client!
         res.setHeader('Content-Type', 'text/html');
         res.writeHead(200);
         res.end('<img src="' + canvas.toDataURL() + '" />');
     });
 
 };
+
+export default {create};
